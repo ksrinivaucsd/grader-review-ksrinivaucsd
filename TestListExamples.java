@@ -18,4 +18,56 @@ public class TestListExamples {
     List<String> expected = Arrays.asList("a", "a", "b", "c", "d");
     assertEquals(expected, merged);
   }
+
+  @Test(timeout = 500)
+  public void testMergeRightEndRightEmpty() {
+    List<String> left = Arrays.asList("a");
+    List<String> right = Arrays.asList();
+    List<String> merged = ListExamples.merge(left, right);
+    List<String> expected = Arrays.asList("a");
+    assertEquals(expected, merged);
+  }
+
+    @Test(timeout = 500)
+  public void testMergeLefttEndRightEmpty() {
+    List<String> left = Arrays.asList("a");
+    List<String> right = Arrays.asList();
+    List<String> merged = ListExamples.merge(right, left);
+    List<String> expected = Arrays.asList("a");
+    assertEquals(expected, merged);
+  }
+
+    @Test(timeout = 500)
+  public void testMergeBothEmpty() {
+    List<String> left = Arrays.asList();
+    List<String> right = Arrays.asList();
+    List<String> merged = ListExamples.merge(left, right);
+    List<String> expected = Arrays.asList();
+    assertEquals(expected, merged);
+  }
+
+    @Test(timeout = 500)
+  public void testFilterBasic() {
+    List<String> left = Arrays.asList("moon", "sun", "earth");
+    List<String> filtered = ListExamples.filter(left, new IsMoon());
+    List<String> expected = Arrays.asList("moon");
+    assertEquals(expected, filtered);
+  }
+
+    @Test(timeout = 500)
+  public void testFilterNoneFiltered() {
+    List<String> left = Arrays.asList( "sun", "earth");
+    List<String> filtered = ListExamples.filter(left, new IsMoon());
+    List<String> expected = Arrays.asList();
+    assertEquals(expected, filtered);
+  }
+
+    @Test(timeout = 500)
+  public void testFilterEmptyList() {
+    List<String> left = Arrays.asList();
+    List<String> filtered = ListExamples.filter(left, new IsMoon());
+    List<String> expected = Arrays.asList();
+    assertEquals(expected, filtered);
+  }
 }
+
